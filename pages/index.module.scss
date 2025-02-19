@@ -1,0 +1,74 @@
+.page {
+  background-color: #14213d;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+  position: relative;
+}
+
+.matchId {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #e5e5e5;
+  border-radius: 5px;
+  padding: 5px 10px;
+
+  p {
+    border: 1px solid #14213d;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 0;
+  }
+
+  span {
+    font-size: 14px;
+  }
+}
+
+.row {
+  .tile {
+    width: 100px;
+    height: 100px;
+    background-color: #e5e5e5;
+    border-color: #e5e5e5;
+    border-radius: 0 !important;
+  }
+}
+
+.row:first-child {
+  .tile:first-child {
+    border-top-left-radius: 8px !important;
+  }
+
+  .tile:nth-child(4) {
+    border-top-right-radius: 8px !important;
+  }
+
+  .tile:nth-child(6) {
+    border-top-left-radius: 8px !important;
+  }
+
+  .tile:last-child {
+    border-top-right-radius: 8px !important;
+  }
+}
+
+.row:last-child {
+  .tile:first-child {
+    border-bottom-left-radius: 8px !important;
+  }
+
+  .tile:nth-child(4) {
+    border-bottom-right-radius: 8px !important;
+  }
+
+  .tile:nth-child(6) {
+    border-bottom-left-radius: 8px !important;
+  }
+
+  .tile:last-child {
+    border-bottom-right-radius: 8px !important;
+  }
+}

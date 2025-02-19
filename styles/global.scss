@@ -1,0 +1,95 @@
+@import './colors.scss';
+@import './antd-override.scss';
+
+.cursor {
+  cursor: pointer;
+}
+
+.icon {
+  font-size: 25px;
+}
+
+.user-select-none {
+  user-select: none;
+}
+
+@font-face {
+  font-family: 'NoirPro';
+  src: url('/fonts/NoirPro-Regular.woff') format('woff'),
+    url('/fonts/NoirPro-Regular.wof2') format('wof2');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NoirPro';
+  src: url('/fonts/NoirPro-Bold.woff') format('woff'),
+    url('/fonts/NoirPro-Bold.wof2') format('wof2');
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'NoirPro';
+  src: url('/fonts/NoirPro-Medium.woff') format('woff'),
+    url('/fonts/NoirPro-Medium.wof2') format('wof2');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+body {
+  background: white;
+  //   font-family: 'NoirPro', Arial, Helvetica, sans-serif;
+  font-family: NoirPro, Arial, Helvetica, sans-serif;
+  font-feature-settings: 'kern' 1;
+  font-kerning: normal;
+}
+
+*::-webkit-scrollbar {
+  padding: 0 2px;
+  width: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #b1b1b1;
+}
+
+ul li {
+  list-style-type: none;
+  &:before {
+    content: '• ';
+  }
+}
+
+.ant-skeleton-paragraph li,
+.ant-list-item,
+.ant-menu-item,
+.ant-menu-submenu,
+.ant-dropdown-menu-item {
+  list-style-type: none !important;
+  &:before {
+    content: '' !important;
+    display: none !important;
+  }
+}
+
+.ant-menu-submenu-title:active {
+  background-color: #f0f0f0 !important;
+}
+
+.ant-menu-item-selected {
+  background-color: #f0f0f0 !important;
+}
+
+pre {
+  font-family: NoirPro, Arial, Helvetica, sans-serif;
+  line-height: 30px;
+}
+
+.mb0 {
+  margin-bottom: 0;
+}
