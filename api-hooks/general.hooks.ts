@@ -26,10 +26,49 @@ const useMatch = (id: string) => {
   )
 }
 
+const useBoard = (id: string) => {
+  return useQuery(['board', id], () => axios.get(`/general/board/${id}`).then((res) => res.data))
+}
+
 const useJoinMatch = () => {
   return useMutation((data: any) => {
     return axios.get(`/general/join-match/${data.id}`)
   })
 }
 
-export { useConnect, useCreateUser, useCreateMatch, useMatch, useJoinMatch }
+const useFlip = () => {
+  return useMutation((data: any) => {
+    return axios.post(`/general/flip/${data.matchId}`, data)
+  })
+}
+
+const useMove = () => {
+  return useMutation((data: any) => {
+    return axios.post(`/general/move/${data.matchId}`, data)
+  })
+}
+
+const useReset = () => {
+  return useMutation((data: any) => {
+    return axios.post(`/general/reset/${data.matchId}`, data)
+  })
+}
+
+const useEndTurn = () => {
+  return useMutation((data: any) => {
+    return axios.post(`/general/end-turn/${data.matchId}`, data)
+  })
+}
+
+export {
+  useConnect,
+  useCreateUser,
+  useCreateMatch,
+  useMatch,
+  useJoinMatch,
+  useFlip,
+  useMove,
+  useBoard,
+  useReset,
+  useEndTurn
+}

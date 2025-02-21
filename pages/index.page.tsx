@@ -15,6 +15,7 @@ function Home() {
   const { mutate: joinMatch } = useJoinMatch()
   const [pageState, setPageState] = useState('')
   const [color, setColor] = useState('')
+  const [joinMatchId, setJoinMatchId] = useState('')
   const router = useRouter()
 
   useEffect(() => {
@@ -30,7 +31,7 @@ function Home() {
   return (
     <>
       <Head>
-        <title>Reggato</title>
+        <title>Reggata</title>
       </Head>
       <Flex className={`${styles.page} `} justify="center" align="center">
         <Card style={{ marginBottom: 100 }}>
@@ -136,14 +137,23 @@ function Home() {
                   style={{
                     width: 150
                   }}
+                  value={joinMatchId}
+                  onChange={(e) => {
+                    setJoinMatchId(e.target.value)
+                  }}
                 />
 
                 <Button
                   type="primary"
                   onClick={() => {
+                    if (!joinMatchId) {
+                      message.error('Please enter a match ID')
+                      return
+                    }
+
                     joinMatch(
                       {
-                        id: '123'
+                        id: joinMatchId
                       },
                       {
                         onSuccess: ({ data }: any) => {

@@ -9,7 +9,7 @@ export const colors = [
   }
 ]
 
-export const initialBoard = [
+export const initialBoard: ({ tileType?: string; nextTile?: string; token?: string } | null)[][] = [
   [
     {
       tileType: 'shield',
@@ -49,7 +49,7 @@ export const initialBoard = [
     {
       nextTile: 'right'
     },
-    { tileType: 'splitter' }
+    { nextTile: 'up' }
   ],
   [
     {

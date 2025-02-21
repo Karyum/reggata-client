@@ -27,6 +27,18 @@
   }
 }
 
+.token {
+  // border-radius: 50%;
+  border-color: #fca311;
+  border-width: 5px;
+  border-style: solid;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 2;
+  position: relative;
+}
+
 .row {
   .tile {
     width: 100px;
@@ -70,5 +82,72 @@
 
   .tile:last-child {
     border-bottom-right-radius: 8px !important;
+  }
+}
+
+.container {
+  position: relative;
+  padding: 10px;
+  min-width: 100px;
+}
+
+.container svg {
+  position: absolute;
+  z-index: 1;
+}
+
+.container .line {
+  stroke-dasharray: 260;
+  stroke-width: 2px;
+  fill: transparent;
+  stroke: rgba(78, 255, 13, 0.3);
+  animation: svgAnimation 2s linear infinite;
+}
+
+@keyframes svgAnimation {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset: 1000;
+  }
+}
+
+.finishTile {
+  position: relative;
+  width: 85px;
+  height: 85px;
+  background-color: transparent;
+  border: 5px solid #fca311;
+  border-radius: 50%;
+}
+
+.finishTile .part {
+  width: 50%;
+  height: 50%;
+  border-radius: 100% 0 0 0;
+  background: #ffcc66; /* Crust color */
+  position: absolute;
+
+  &:nth-child(1) {
+    top: 0;
+    left: 0;
+    transform: rotate(0deg);
+  }
+  &:nth-child(2) {
+    top: 0px;
+    right: -1px;
+    transform: rotate(90deg);
+  }
+  &:nth-child(3) {
+    bottom: 1px;
+    right: 0;
+    transform: rotate(180deg);
+  }
+
+  &:nth-child(4) {
+    bottom: 0;
+    left: 0;
+    transform: rotate(270deg);
   }
 }

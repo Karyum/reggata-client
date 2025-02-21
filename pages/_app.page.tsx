@@ -14,7 +14,7 @@ import Head from 'next/head'
 
 function App({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedState }>) {
   const [queryClient] = useState(() => new QueryClient())
-  console.log(1)
+
   return (
     <RecoilRoot>
       <QueryClientProvider client={queryClient}>
@@ -29,7 +29,7 @@ function App({ Component, pageProps }: AppProps<{ dehydratedState: DehydratedSta
             <Component {...pageProps} />
           </AppLayout>
         </Hydrate>
-        <ReactQueryDevtools />
+        {/* <ReactQueryDevtools /> */}
       </QueryClientProvider>
     </RecoilRoot>
   )
