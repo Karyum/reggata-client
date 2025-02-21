@@ -33,7 +33,7 @@ function Home() {
       <Head>
         <title>Reggata</title>
       </Head>
-      <Flex className={`${styles.page} `} justify="center" align="center">
+      <Flex className={`${styles.page}`} justify="center" align="center">
         <Card style={{ marginBottom: 100 }}>
           <Flex vertical gap={30} style={{ width: '100%' }}>
             <Flex vertical gap={0} style={{ width: '100%' }}>

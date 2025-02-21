@@ -16,8 +16,8 @@ client.interceptors.response.use(
       message.success(response.data.message)
     }
 
-    if (response.data.token) {
-      secureLocalStorage.setItem('token', response.data.token)
+    if (response.data.authtoken) {
+      secureLocalStorage.setItem('token', response.data.authtoken)
     }
 
     if (response.data.status === 200) {
