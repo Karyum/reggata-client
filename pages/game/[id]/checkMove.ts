@@ -37,7 +37,7 @@ const checkMove = (board: any, from: string, steps: number, myColor: string) => 
   let toRow = +fromRow
   let toCol = +fromCol
 
-  const stepsArray = new Array(steps).fill(1)
+  const stepsArray = new Array(steps || 0).fill(1)
 
   let stepReachedFinish = false
   let wentBeyondFinish = false

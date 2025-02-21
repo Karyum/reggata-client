@@ -236,7 +236,7 @@ const Game = ({ id }: { id: string }) => {
 
             <Flex justify="space-between" align="center">
               <Flex gap={10}>
-                {new Array(matchData.opponent.tokensInHome).fill(0).map((_, index) => (
+                {new Array(matchData.opponent.tokensInHome || 0).fill(0).map((_, index) => (
                   <div
                     key={index}
                     className={styles.token}
@@ -271,9 +271,9 @@ const Game = ({ id }: { id: string }) => {
                     >
                       <div className={styles.finishTile}>
                         {new Array(
-                          rowIndex === 0
+                          (rowIndex === 0
                             ? matchData.opponent.tokensReachedFinish
-                            : matchData.clientPlayer.tokensReachedFinish
+                            : matchData.clientPlayer.tokensReachedFinish) || 0
                         )
                           .fill(0)
                           .map((_, index) => (
@@ -349,7 +349,7 @@ const Game = ({ id }: { id: string }) => {
           <Flex className={styles.clientPlayer} vertical gap={20} style={{ width: '100%' }}>
             <Flex justify="space-between" align="center">
               <Flex gap={10} style={{ minWidth: 100 }}>
-                {new Array(matchData.clientPlayer.tokensInHome).fill(0).map((_, index) => (
+                {new Array(matchData.clientPlayer.tokensInHome || 0).fill(0).map((_, index) => (
                   <div
                     key={index}
                     className={styles.token}
