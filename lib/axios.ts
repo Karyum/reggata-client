@@ -20,6 +20,11 @@ client.interceptors.response.use(
       secureLocalStorage.setItem('token', response.data.authtoken)
     }
 
+    if (response.data.removeLocalAuthToken) {
+      secureLocalStorage.removeItem('token')
+      window.location.reload()
+    }
+
     if (response.data.status === 200) {
       message.success('Success')
     }
