@@ -60,6 +60,7 @@ function Home() {
 
                 <Button
                   onClick={() => {
+                    secureLocalStorage.removeItem('minor-match-data')
                     setPageState('join')
                   }}
                 >
@@ -107,6 +108,7 @@ function Home() {
                       message.error('Please select a color')
                       return
                     }
+                    secureLocalStorage.removeItem('minor-match-data')
 
                     createMatch(
                       {
