@@ -6,11 +6,12 @@ import styles from '../pages/index.module.scss'
 interface MoveBoxFromHomeProps {
   to: string
   color: string
+  homeTotal: number
+  opponent?: boolean
 }
 
-const MoveBoxFromHome = ({ to, color }: MoveBoxFromHomeProps) => {
+const MoveBoxFromHome = ({ to, color, homeTotal, opponent = false }: MoveBoxFromHomeProps) => {
   const [scope, animate] = useAnimate()
-  let stop = false
 
   const moveToTarget = (id: string) => {
     const targetElement = document.getElementById(id)
@@ -31,23 +32,29 @@ const MoveBoxFromHome = ({ to, color }: MoveBoxFromHomeProps) => {
     const x = targetCenterX - initialCenterX
     const y = targetCenterY - initialCenterY
 
-    // using document find if there is an instance of motion framer motion, if yes prevent the animation
-    console.log(1, stop, document.querySelector('.motion'))
-    if (document.querySelector('.motion') || stop) {
-      stop = true
-
-      return
+    if (opponent) {
+      const opponentTotal = document.querySelector('#opponent-tokens')?.childNodes.length
+      // +1 for the &nbsp; element
+      if (homeTotal === opponentTotal) {
+        return
+      } else {
+        requestAnimationFrame(() => {
+          animate(scope.current, { x, y }, { duration: 0.4 })
+        })
+      }
     } else {
-      scope.current.classList.add('motion')
-      requestAnimationFrame(() => {
-        animate(scope.current, { x, y }, { duration: 0.4 })
-        console.log(2, scope.current)
-      })
+      const currentTotal = document.querySelector('#client-tokens')?.childNodes.length
+      if (currentTotal === homeTotal) {
+        return
+      } else {
+        requestAnimationFrame(() => {
+          animate(scope.current, { x, y }, { duration: 0.4 })
+        })
+      }
     }
   }
 
   useEffect(() => {
-    console.log(3, stop)
     moveToTarget(to)
   }, [])
 

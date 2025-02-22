@@ -95,6 +95,7 @@ const Game = ({ id }: { id: string }) => {
       player?: 'client' | 'opponent'
       toSteps?: string[]
       color?: string
+      homeTotal?: number
     }
   )
 
@@ -191,7 +192,8 @@ const Game = ({ id }: { id: string }) => {
           to: data.toAnimation,
           player: 'opponent',
           toSteps: data.toAnimationSteps,
-          color: data.color
+          color: data.color,
+          homeTotal: data.homeTotal
         })
       }
       // else {
@@ -314,11 +316,15 @@ const Game = ({ id }: { id: string }) => {
             </Card>
 
             <Flex justify="space-between" align="center">
-              <Flex gap={10} style={{ minWidth: 100 }}>
+              <Flex gap={10} style={{ minWidth: 100 }} id="opponent-tokens">
                 {new Array(matchData.opponent.tokensInHome || 0)
                   .fill(0)
                   .filter((_, index) =>
-                    !moveAnimation.player ? true : moveAnimation.from === 'home' && index !== 0
+                    !moveAnimation.player ||
+                    moveAnimation.player === 'client' ||
+                    moveAnimation.from !== 'home'
+                      ? true
+                      : moveAnimation.from === 'home' && index !== 0
                   )
                   .concat(
                     moveAnimation.player === 'opponent' && moveAnimation.from === 'home'
@@ -327,7 +333,12 @@ const Game = ({ id }: { id: string }) => {
                   )
                   .map((_, index) =>
                     _.motionToken ? (
-                      <MoveBoxFromHome to={moveAnimation.to} color={matchData.opponent.color} />
+                      <MoveBoxFromHome
+                        to={moveAnimation.to}
+                        color={matchData.opponent.color}
+                        homeTotal={moveAnimation.homeTotal || 0}
+                        opponent
+                      />
                     ) : (
                       <div
                         key={index}
@@ -463,12 +474,14 @@ const Game = ({ id }: { id: string }) => {
 
           <Flex className={styles.clientPlayer} vertical gap={20} style={{ width: '100%' }}>
             <Flex justify="space-between" align="center">
-              <Flex gap={10} style={{ minWidth: 100 }}>
+              <Flex gap={10} style={{ minWidth: 100 }} id="client-tokens">
                 {new Array(matchData.clientPlayer.tokensInHome || 0)
                   .fill(0)
                   // so if a token is moving remove 1 from the home
                   .filter((_, index) =>
-                    !moveAnimation.player || moveAnimation.player === 'opponent'
+                    !moveAnimation.player ||
+                    moveAnimation.player === 'opponent' ||
+                    moveAnimation.from !== 'home'
                       ? true
                       : moveAnimation.from === 'home' && index !== 0
                   )
@@ -483,6 +496,7 @@ const Game = ({ id }: { id: string }) => {
                       <MoveBoxFromHome
                         to={`2,${4 - matchData.canMoveAmount}`}
                         color={matchData.clientPlayer.color}
+                        homeTotal={moveAnimation.homeTotal || 0}
                       />
                     ) : (
                       <div
@@ -510,7 +524,8 @@ const Game = ({ id }: { id: string }) => {
                           setMoveAnimation({
                             from: 'home',
                             to: `2,${4 - matchData.canMoveAmount}`,
-                            player: 'client'
+                            player: 'client',
+                            homeTotal: matchData.clientPlayer.tokensInHome
                           })
 
                           move({
