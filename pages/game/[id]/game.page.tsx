@@ -566,7 +566,7 @@ const Game = ({ id }: { id: string }) => {
                   }
                   matchId={match?.id}
                 />
-                {matchData.myTurn && !matchData.rolled ? (
+                {matchData.myTurn && !matchData.rolled && !animating ? (
                   <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
                     <rect
                       rx="8"
