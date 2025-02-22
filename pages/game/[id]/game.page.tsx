@@ -188,7 +188,6 @@ const Game = ({ id }: { id: string }) => {
         })
       }
       // else {
-      setAnimating(true)
       message.success('Turn changed')
       setAnimating(true)
 
@@ -202,7 +201,7 @@ const Game = ({ id }: { id: string }) => {
             from: '',
             to: ''
           })
-        }, 200)
+        }, 500)
       }, 800)
       // }
 
