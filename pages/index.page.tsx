@@ -100,33 +100,43 @@ function Home() {
                   ))}
                 </Select>
 
-                <Button
-                  type="primary"
-                  loading={isLoading}
-                  onClick={() => {
-                    if (!color) {
-                      message.error('Please select a color')
-                      return
-                    }
-                    secureLocalStorage.removeItem('minor-match-data')
-
-                    createMatch(
-                      {
-                        color: color
-                      },
-                      {
-                        onSuccess: ({ data }: any) => {
-                          router.push(`/game/${data.matchId}`)
-                        },
-                        onError: (error) => {
-                          message.error('An error occurred')
-                        }
+                <Flex gap={10}>
+                  <Button
+                    type="primary"
+                    loading={isLoading}
+                    onClick={() => {
+                      if (!color) {
+                        message.error('Please select a color')
+                        return
                       }
-                    )
-                  }}
-                >
-                  Create
-                </Button>
+                      secureLocalStorage.removeItem('minor-match-data')
+
+                      createMatch(
+                        {
+                          color: color
+                        },
+                        {
+                          onSuccess: ({ data }: any) => {
+                            router.push(`/game/${data.matchId}`)
+                          },
+                          onError: (error) => {
+                            message.error('An error occurred')
+                          }
+                        }
+                      )
+                    }}
+                  >
+                    Create
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      setPageState('')
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Flex>
               </Flex>
             ) : (
               ''
@@ -145,31 +155,41 @@ function Home() {
                   }}
                 />
 
-                <Button
-                  type="primary"
-                  onClick={() => {
-                    if (!joinMatchId) {
-                      message.error('Please enter a match ID')
-                      return
-                    }
-
-                    joinMatch(
-                      {
-                        id: joinMatchId
-                      },
-                      {
-                        onSuccess: ({ data }: any) => {
-                          router.push(`/game/${data.matchId}`)
-                        },
-                        onError: (error) => {
-                          message.error('An error occurred')
-                        }
+                <Flex gap={10}>
+                  <Button
+                    type="primary"
+                    onClick={() => {
+                      if (!joinMatchId) {
+                        message.error('Please enter a match ID')
+                        return
                       }
-                    )
-                  }}
-                >
-                  Join
-                </Button>
+
+                      joinMatch(
+                        {
+                          id: joinMatchId
+                        },
+                        {
+                          onSuccess: ({ data }: any) => {
+                            router.push(`/game/${data.matchId}`)
+                          },
+                          onError: (error) => {
+                            message.error('An error occurred')
+                          }
+                        }
+                      )
+                    }}
+                  >
+                    Join
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      setPageState('')
+                    }}
+                  >
+                    Cancel
+                  </Button>
+                </Flex>
               </Flex>
             ) : (
               ''

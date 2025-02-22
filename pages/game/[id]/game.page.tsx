@@ -178,6 +178,13 @@ const Game = ({ id }: { id: string }) => {
     })
 
     socket.on('client:turn-changed', (data) => {
+      if (data?.winner) {
+        setTimeout(() => {
+          setWinner(data.winner)
+          setOpen(true)
+        }, 500)
+      }
+
       if (data?.toAnimation) {
         setMoveAnimation({
           from: data.fromAnimation,
@@ -233,11 +240,6 @@ const Game = ({ id }: { id: string }) => {
       })
     })
 
-    socket.on('client:winner', (winner) => {
-      setWinner(winner)
-      setOpen(true)
-    })
-
     socket.on('client:reset', () => {
       message.success('Match reset by opponent')
       secureLocalStorage.removeItem('minor-match-data')
@@ -251,8 +253,6 @@ const Game = ({ id }: { id: string }) => {
       socket.off('client:match-joined')
       socket.off('client:flip')
       socket.off('client:turn-changed')
-      socket.off('client:reroll')
-      socket.off('client:winner')
       socket.off('client:reset')
     }
   }, [])
