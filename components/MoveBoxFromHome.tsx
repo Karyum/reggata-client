@@ -1,6 +1,6 @@
 import { useAnimate, motion } from 'framer-motion'
 import { message } from 'antd'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from '../pages/index.module.scss'
 
 interface MoveBoxFromHomeProps {
@@ -10,6 +10,7 @@ interface MoveBoxFromHomeProps {
 
 const MoveBoxFromHome = ({ to, color }: MoveBoxFromHomeProps) => {
   const [scope, animate] = useAnimate()
+  let stop = false
 
   const moveToTarget = (id: string) => {
     const targetElement = document.getElementById(id)
@@ -30,12 +31,23 @@ const MoveBoxFromHome = ({ to, color }: MoveBoxFromHomeProps) => {
     const x = targetCenterX - initialCenterX
     const y = targetCenterY - initialCenterY
 
-    requestAnimationFrame(() => {
-      animate(scope.current, { x, y }, { duration: 0.4 })
-    })
+    // using document find if there is an instance of motion framer motion, if yes prevent the animation
+    console.log(1, stop, document.querySelector('.motion'))
+    if (document.querySelector('.motion') || stop) {
+      stop = true
+
+      return
+    } else {
+      scope.current.classList.add('motion')
+      requestAnimationFrame(() => {
+        animate(scope.current, { x, y }, { duration: 0.4 })
+        console.log(2, scope.current)
+      })
+    }
   }
 
   useEffect(() => {
+    console.log(3, stop)
     moveToTarget(to)
   }, [])
 

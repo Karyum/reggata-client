@@ -317,7 +317,9 @@ const Game = ({ id }: { id: string }) => {
               <Flex gap={10} style={{ minWidth: 100 }}>
                 {new Array(matchData.opponent.tokensInHome || 0)
                   .fill(0)
-                  .filter((_, index) => moveAnimation.player !== 'opponent' && index === 0)
+                  .filter((_, index) =>
+                    !moveAnimation.player ? true : moveAnimation.from === 'home' && index !== 0
+                  )
                   .concat(
                     moveAnimation.player === 'opponent' && moveAnimation.from === 'home'
                       ? { motionToken: true }
@@ -465,7 +467,11 @@ const Game = ({ id }: { id: string }) => {
                 {new Array(matchData.clientPlayer.tokensInHome || 0)
                   .fill(0)
                   // so if a token is moving remove 1 from the home
-                  .filter((_, index) => moveAnimation.player !== 'client' && index === 0)
+                  .filter((_, index) =>
+                    !moveAnimation.player || moveAnimation.player === 'opponent'
+                      ? true
+                      : moveAnimation.from === 'home' && index !== 0
+                  )
                   .concat(
                     moveAnimation.player === 'client' && moveAnimation.from === 'home'
                       ? { motionToken: true }
