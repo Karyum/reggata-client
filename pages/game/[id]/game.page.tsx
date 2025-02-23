@@ -276,9 +276,9 @@ const Game = ({ id }: { id: string }) => {
               {
                 onSuccess: () => {
                   message.success('Match reset')
+                  secureLocalStorage.removeItem('minor-match-data')
                   refetch()
                   refetchBoard()
-                  secureLocalStorage.removeItem('minor-match-data')
                 }
               }
             )
