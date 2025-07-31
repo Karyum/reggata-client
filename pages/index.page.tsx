@@ -194,6 +194,8 @@ function Home() {
             ) : (
               ''
             )}
+
+            <i>*Game creation/joining might be slow since the api uses a free instance. (30 secs - 2 min)</i>
           </Flex>
         </Card>
       </Flex>
