@@ -1,4 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Reggata Game
+
+A digital implementation of the Reggata board game inspired by [Soulframe's Reggata](https://forums.soulframe.com/topic/570-regatta-the-rules-and-where-to-play/). This is a turn-based strategy game for two players where you race to move all your tokens from home to the finish line.
+
+## How to Play
+
+### Game Overview
+
+Reggata is a board game where two players compete to be the first to move all 4 of their tokens from their home area to the finish area on the board.
+
+### Game Setup
+
+- Each player chooses a color (Red or Blue)
+- Each player starts with 4 tokens in their home area
+- Players take turns in a predetermined order
+
+### Turn Mechanics
+
+1. **Roll the Coins**: On your turn, click to flip 4 coins
+2. **Count Colored Coins**: Count how many coins land on your color (not grey)
+3. **Move Tokens**: Use the number of colored coins as movement steps
+
+### Movement Rules
+
+- **From Home**: You can move a token from home to the starting position on the board using your rolled steps
+- **On Board**: Move existing tokens forward along the path indicated by the tile arrows
+- **Shield Tiles**: Special tiles that provide protection (tokens cannot be captured here)
+- **Finish Area**: The goal area where tokens must reach to score
+
+### Winning
+
+The first player to successfully move all 4 tokens to the finish area wins the game!
+
+### Special Features
+
+- **Real-time Multiplayer**: Play against other players online
+- **Match Creation**: Create a match and share the match ID with a friend
+- **Match Joining**: Join an existing match using a match ID
+- **Reset Option**: Reset the game at any time during play
 
 ## Getting Started
 
@@ -15,26 +53,3 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.

@@ -35,7 +35,7 @@ function Home() {
       </Head>
       <Flex className={`${styles.page}`} justify="center" align="center">
         <Card style={{ marginBottom: 100 }}>
-          <Flex vertical gap={30} style={{ width: '100%' }}>
+          <Flex vertical gap={30} style={{ width: '400px' }}>
             <Flex vertical gap={0} style={{ width: '100%' }}>
               <h2>Welcome to Reggata!</h2>
               <p
@@ -48,7 +48,7 @@ function Home() {
             </Flex>
 
             {!pageState ? (
-              <Flex gap={20} style={{ width: '100%' }}>
+              <Flex gap={20} style={{ width: '100%' }} justify="space-between">
                 <Button
                   type="primary"
                   onClick={() => {
@@ -195,12 +195,9 @@ function Home() {
               ''
             )}
 
-            <i 
-            style={{
-              width: '250px'
-            }}
-            >
-              *Game creation/joining might be slow since the api uses a free instance. (30 secs - 2 min)
+            <i>
+              *Game creation/joining might be slow since the api uses a free instance. (30 secs - 2
+              min)
             </i>
           </Flex>
         </Card>
